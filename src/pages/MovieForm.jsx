@@ -3,14 +3,23 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 
 function MovieForm() {
   const [title, setTitle] = useState("");
-  const [year, setYear] = useState("");
+  const [time, setTime] = useState("");
+  const [genres, setGenres] = useState("");
   const { director, directors, setDirectors } = useOutletContext();
   const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    const newMovie = { id: Date.now(), title, year };
+    const newMovie = {
+      id: Date.now(),
+      title,
+      time: Number(time),
+      genres: genres
+        .split(",")
+        .map((genre) => genre.trim())
+        .filter(Boolean),
+    };
     const updatedDirector = {
       ...director,
       movies: [...(director.movies || []), newMovie],
@@ -31,6 +40,8 @@ function MovieForm() {
   }
 
   return (
+    <>
+    <h2>Add New Movie</h2>
     <form onSubmit={handleSubmit}>
       <input
         type="text"
@@ -40,12 +51,19 @@ function MovieForm() {
       />
       <input
         type="text"
-        placeholder="Release Year"
-        value={year}
-        onChange={(e) => setYear(e.target.value)}
+        placeholder="Duration"
+        value={time}
+        onChange={(e) => setTime(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Genres"
+        value={genres}
+        onChange={(e) => setGenres(e.target.value)}
       />
       <button type="submit">Add Movie</button>
     </form>
+    </>
   );
 }
 

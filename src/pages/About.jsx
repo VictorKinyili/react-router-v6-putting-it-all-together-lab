@@ -1,10 +1,6 @@
-import NavBar from "../components/NavBar"
-
 function About() {
     return (
-        <>
-            <NavBar />
-            <main>
+        <main>
                 <h1>About the Movie Directory 🎞️</h1>
                 <p>
                 This application showcases a list of notable film directors and their
@@ -24,8 +20,7 @@ function About() {
                 concepts such as nested routing, dynamic URL parameters, and
                 programmatic navigation.
                 </p>
-            </main>
-        </>
+        </main>
     )
   }
   

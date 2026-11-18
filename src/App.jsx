@@ -1,13 +1,14 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import Home from "./components/Home";
-import DirectorContainer from "./components/DirectorContainer";
-import DirectorList from "./components/DirectorList";
-import DirectorForm from "./components/DirectorForm";
-import DirectorCard from "./components/DirectorCard";
-import MovieForm from "./components/MovieForm";
-import MovieCard from "./components/MovieCard";
-import ErrorPage from "./components/ErrorPage";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import DirectorContainer from "./pages/DirectorContainer";
+import DirectorList from "./pages/DirectorList";
+import DirectorForm from "./pages/DirectorForm";
+import DirectorCard from "./pages/DirectorCard";
+import MovieForm from "./pages/MovieForm";
+import MovieCard from "./pages/MovieCard";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/directors" element={<DirectorContainer />}>
           <Route index element={<DirectorList />} />
           <Route path="new" element={<DirectorForm />} />
@@ -22,8 +24,8 @@ function App() {
             <Route path="movies/new" element={<MovieForm />} />
             <Route path="movies/:movieId" element={<MovieCard />} />
           </Route>
+          <Route path="*" element={<ErrorPage />} />
         </Route>
-        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );

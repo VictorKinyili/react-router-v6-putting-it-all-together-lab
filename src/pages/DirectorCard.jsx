@@ -2,15 +2,17 @@ import { useParams, useOutletContext, Outlet, Link } from "react-router-dom";
 
 function DirectorCard() {
   const { id } = useParams();
-  const { directors, setDirectors } = useOutletContext();
+  const { directors, setDirectors, loading } = useOutletContext();
 
   const director = directors.find((d) => String(d.id) === id);
 
-  if (!director) return <p>Loading director...</p>;
+  if (loading) return <p>Loading director...</p>;
+  if (!director) return <p>Director not found.</p>;
 
   return (
     <div>
       <h2>{director.name}</h2>
+      {director.bio && <p>{director.bio}</p>}
       <Link to={`/directors/${director.id}/movies/new`}>Add New Movie</Link>
       <ul>
         {director.movies?.map((movie) => (

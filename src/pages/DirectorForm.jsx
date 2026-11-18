@@ -22,6 +22,8 @@ function DirectorForm() {
   }
 
   return (
+    <>
+    <h2>Add New Director</h2>
     <form onSubmit={handleSubmit}>
       <input
         type="text"
@@ -31,6 +33,7 @@ function DirectorForm() {
       />
       <button type="submit">Add Director</button>
     </form>
+    </>
   );
 }
 

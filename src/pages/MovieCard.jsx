@@ -11,7 +11,9 @@ function MovieCard() {
   return (
     <div>
       <h3>{movie.title}</h3>
-      <p>Year: {movie.year}</p>
+      {movie.time != null && <p>Duration: {movie.time} minutes</p>}
+      {movie.year != null && <p>Year: {movie.year}</p>}
+      {movie.genres && <p>{movie.genres.join(", ")}</p>}
     </div>
   );
 }
